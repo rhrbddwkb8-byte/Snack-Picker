@@ -506,76 +506,130 @@ function showPatterns() {
 
       entry.feelings.forEach(feeling => {
         if (!byFeeling[feeling]) {
-          byFeeling[feeling] = { tags: {}, snacks: {} };
+          byFeeling[feeling] = {
+            total: 0,
+            tags: {},
+            snacks: {}
+          };
         }
+
+        byFeeling[feeling].total += 1;
 
         snack.tags.forEach(tag => {
           byFeeling[feeling].tags[tag] =
             (byFeeling[feeling].tags[tag] || 0) + 1;
 
           if (!byTag[tag]) {
-            byTag[tag] = { feelings: {}, snacks: {} };
+            byTag[tag] = {
+              total: 0,
+              feelings: {},
+              snacks: {}
+            };
           }
-
-          byTag[tag].feelings[feeling] =
-            (byTag[tag].feelings[feeling] || 0) + 1;
-
-          byTag[tag].snacks[snack.name] =
-            (byTag[tag].snacks[snack.name] || 0) + 1;
         });
 
         byFeeling[feeling].snacks[snack.name] =
           (byFeeling[feeling].snacks[snack.name] || 0) + 1;
       });
+
+      snack.tags.forEach(tag => {
+        if (!byTag[tag]) {
+          byTag[tag] = {
+            total: 0,
+            feelings: {},
+            snacks: {}
+          };
+        }
+
+        byTag[tag].total += 1;
+
+        entry.feelings.forEach(feeling => {
+          byTag[tag].feelings[feeling] =
+            (byTag[tag].feelings[feeling] || 0) + 1;
+        });
+
+        byTag[tag].snacks[snack.name] =
+          (byTag[tag].snacks[snack.name] || 0) + 1;
+      });
     });
 
+    html += `
+      <button onclick="document.getElementById('byFeelingSection').style.display='block'; document.getElementById('bySensorySection').style.display='none';">
+        By feeling
+      </button>
+
+      <button onclick="document.getElementById('byFeelingSection').style.display='none'; document.getElementById('bySensorySection').style.display='block';">
+        By sensory need
+      </button>
+    `;
+
+    html += `<div id="byFeelingSection" style="display:none;">`;
     html += `<h3>By feeling</h3>`;
 
     Object.keys(byFeeling).forEach(feeling => {
+      const total = byFeeling[feeling].total;
+
       const topTags = Object.entries(byFeeling[feeling].tags)
-        .sort((a, b) => b[1] - a[1]);
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 3);
 
       const topSnacks = Object.entries(byFeeling[feeling].snacks)
         .sort((a, b) => b[1] - a[1])
-        .slice(0, 5);
+        .slice(0, 3);
 
       html += `
         <div class="historyBox">
           <strong>${feeling}</strong><br><br>
 
-          <em>Top sensory needs:</em><br>
-          ${topTags.map(([tag, count]) => `${tag}: ${count}`).join("<br>")}
+          <em>Most common sensory needs:</em><br>
+          ${topTags.map(([tag, count]) =>
+            `${tag}: ${Math.round((count / total) * 100)}%`
+          ).join("<br>")}
 
           <br><br>
           <em>Trending snacks:</em><br>
-          ${topSnacks.map(([snack, count]) => `${snack}: ${count}`).join("<br>")}
+          ${topSnacks.map(([snack, count]) =>
+            `${snack}: ${Math.round((count / total) * 100)}%`
+          ).join("<br>")}
         </div>
       `;
     });
 
+    html += `</div>`;
+
+    html += `<div id="bySensorySection" style="display:none;">`;
     html += `<h3>By sensory need</h3>`;
 
     Object.keys(byTag).forEach(tag => {
+      const total = byTag[tag].total;
+
       const topFeelings = Object.entries(byTag[tag].feelings)
-        .sort((a, b) => b[1] - a[1]);
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 3);
 
       const topSnacks = Object.entries(byTag[tag].snacks)
         .sort((a, b) => b[1] - a[1])
-        .slice(0, 5);
+        .slice(0, 3);
 
       html += `
         <div class="historyBox">
           <strong>${tag}</strong><br><br>
 
-          <em>Common feelings:</em><br>
-          ${topFeelings.map(([feeling, count]) => `${feeling}: ${count}`).join("<br>")}
+          <em>Most likely feelings behind it:</em><br>
+          ${topFeelings.map(([feeling, count]) =>
+            `${feeling}: ${Math.round((count / total) * 100)}%`
+          ).join("<br>")}
 
           <br><br>
           <em>Common snacks:</em><br>
-          ${topSnacks.map(([snack, count]) => `${snack}: ${count}`).join("<br>")}
+          ${topSnacks.map(([snack, count]) =>
+            `${snack}: ${Math.round((count / total) * 100)}%`
+          ).join("<br>")}
         </div>
       `;
     });
+
+    html += `</div>`;
   }
 
   html += `
