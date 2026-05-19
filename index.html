@@ -488,37 +488,93 @@ function showHistory() {
 
 function showPatterns() {
   const history = JSON.parse(localStorage.getItem("snackHistory")) || [];
-  const patternMap = {};
-
-  history.forEach(entry => {
-    entry.feelings.forEach(feeling => {
-      if (!patternMap[feeling]) {
-        patternMap[feeling] = {};
-      }
-
-      patternMap[feeling][entry.snack] =
-        (patternMap[feeling][entry.snack] || 0) + 1;
-    });
-  });
 
   document.getElementById("question").innerHTML = "<h2>Patterns</h2>";
+  document.getElementById("answers").innerHTML = "";
 
   let html = "";
 
   if (history.length === 0) {
     html += `<p>No saved entries yet.</p>`;
   } else {
-    Object.keys(patternMap).forEach(feeling => {
-      html += `<div class="historyBox"><strong>${feeling}</strong><br><br>`;
+    const byFeeling = {};
+    const byTag = {};
 
-      const sortedSnacks = Object.entries(patternMap[feeling])
+    history.forEach(entry => {
+      const snack = snacks.find(s => s.name === entry.snack);
+      if (!snack) return;
+
+      entry.feelings.forEach(feeling => {
+        if (!byFeeling[feeling]) {
+          byFeeling[feeling] = { tags: {}, snacks: {} };
+        }
+
+        snack.tags.forEach(tag => {
+          byFeeling[feeling].tags[tag] =
+            (byFeeling[feeling].tags[tag] || 0) + 1;
+
+          if (!byTag[tag]) {
+            byTag[tag] = { feelings: {}, snacks: {} };
+          }
+
+          byTag[tag].feelings[feeling] =
+            (byTag[tag].feelings[feeling] || 0) + 1;
+
+          byTag[tag].snacks[snack.name] =
+            (byTag[tag].snacks[snack.name] || 0) + 1;
+        });
+
+        byFeeling[feeling].snacks[snack.name] =
+          (byFeeling[feeling].snacks[snack.name] || 0) + 1;
+      });
+    });
+
+    html += `<h3>By feeling</h3>`;
+
+    Object.keys(byFeeling).forEach(feeling => {
+      const topTags = Object.entries(byFeeling[feeling].tags)
         .sort((a, b) => b[1] - a[1]);
 
-      sortedSnacks.forEach(([snack, count]) => {
-        html += `${snack}: ${count}<br>`;
-      });
+      const topSnacks = Object.entries(byFeeling[feeling].snacks)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 5);
 
-      html += `</div>`;
+      html += `
+        <div class="historyBox">
+          <strong>${feeling}</strong><br><br>
+
+          <em>Top sensory needs:</em><br>
+          ${topTags.map(([tag, count]) => `${tag}: ${count}`).join("<br>")}
+
+          <br><br>
+          <em>Trending snacks:</em><br>
+          ${topSnacks.map(([snack, count]) => `${snack}: ${count}`).join("<br>")}
+        </div>
+      `;
+    });
+
+    html += `<h3>By sensory need</h3>`;
+
+    Object.keys(byTag).forEach(tag => {
+      const topFeelings = Object.entries(byTag[tag].feelings)
+        .sort((a, b) => b[1] - a[1]);
+
+      const topSnacks = Object.entries(byTag[tag].snacks)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 5);
+
+      html += `
+        <div class="historyBox">
+          <strong>${tag}</strong><br><br>
+
+          <em>Common feelings:</em><br>
+          ${topFeelings.map(([feeling, count]) => `${feeling}: ${count}`).join("<br>")}
+
+          <br><br>
+          <em>Common snacks:</em><br>
+          ${topSnacks.map(([snack, count]) => `${snack}: ${count}`).join("<br>")}
+        </div>
+      `;
     });
   }
 
@@ -526,16 +582,7 @@ function showPatterns() {
     <button class="secondaryButton" onclick="restart()">Back to snack picker</button>
   `;
 
-  document.getElementById("answers").innerHTML = "";
   document.getElementById("results").innerHTML = html;
-}
-
-function restart() {
-  sweetSavory = "";
-  sensoryChoices = [];
-  extraChoices = [];
-  chosenSnack = "";
-  showPage1();
 }
 
 showPage1();
