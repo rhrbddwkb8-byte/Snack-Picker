@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Snack Picker</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f7f3ef;
+  margin: 0;
+  padding: 20px;
+  color: #222;
+}
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  background: white;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 4px 16px rgba(0,0,0,.12);
+}
+
+button {
+  width: 100%;
+  border: none;
+  border-radius: 14px;
+  padding: 14px;
+  margin: 10px 0;
+  font-size: 16px;
+  cursor: pointer;
+  background: #e7ddff;
+}
+
+button:hover {
+  background: #d6c6ff;
+}
+
+.secondaryButton {
+  background: #ececec;
+}
+
+.secondaryButton:hover {
+  background: #ddd;
+}
+
+.option {
+  text-align: left;
+  margin: 10px 0;
+}
+
+.snack {
+  background: #fff3c4;
+  padding: 14px;
+  border-radius: 14px;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.snack:hover {
+  background: #ffe99c;
+}
+
+.tags {
+  font-size: 13px;
+  opacity: .7;
+  margin-top: 5px;
+}
+
+.historyBox {
+  background: #f3f3f3;
+  padding: 14px;
+  border-radius: 14px;
+  margin: 10px 0;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+  <h1>Snack Picker</h1>
+  <div id="question"></div>
+  <div id="answers"></div>
+  <div id="results"></div>
+</div>
+
+<script>
+const snacks = [
+  { name:"Oreos dipped in milk", sweetSavory:["Sweet"], tags:["Creamy/rich","Soft","Cold","Intense flavor"] },
+  { name:"Cheesecake bites", sweetSavory:["Sweet"], tags:["Creamy/rich","Soft","Cold","Intense flavor"] },
+  { name:"Doughnuts", sweetSavory:["Sweet"], tags:["Soft","Creamy/rich","Intense flavor"] },
+  { name:"Cake with icing", sweetSavory:["Sweet"], tags:["Soft","Creamy/rich","Intense flavor"] },
+  { name:"Cinnamon rolls", sweetSavory:["Sweet"], tags:["Soft","Creamy/rich","Warm","Intense flavor"] },
+  { name:"Pop-Tarts", sweetSavory:["Sweet"], tags:["Light crisp","Soft","Intense flavor"] },
+  { name:"French toast sticks", sweetSavory:["Sweet"], tags:["Light crisp","Soft","Warm","Mild flavor","Intense flavor"] },
+  { name:"Waffles", sweetSavory:["Sweet"], tags:["Light crisp","Soft","Warm","Creamy/rich","Mild flavor","Intense flavor"] },
+  { name:"Cinnamon sugar toast", sweetSavory:["Sweet"], tags:["Soft","Light crisp","Warm","Mild flavor"] },
+  { name:"Blueberry ricotta English muffin", sweetSavory:["Sweet"], tags:["Light crisp","Soft","Creamy/rich","Mild flavor"] },
+  { name:"Hot crispy cookie + ice cream", sweetSavory:["Sweet"], tags:["Light crisp","Soft","Creamy/rich","Warm","Cold","Intense flavor"] },
+  { name:"Cereal + milk", sweetSavory:["Sweet"], tags:["Hard crunch","Creamy/rich","Cold","Mild flavor"] },
+  { name:"Honey Bunches of Oats + milk", sweetSavory:["Sweet"], tags:["Hard crunch","Creamy/rich","Cold","Intense flavor"] },
+  { name:"Granola", sweetSavory:["Sweet"], tags:["Hard crunch","Dry","Mild flavor"] },
+  { name:"Ice cream cake", sweetSavory:["Sweet"], tags:["Creamy/rich","Hard crunch","Cold","Intense flavor"] },
+  { name:"Cookie dough ice cream", sweetSavory:["Sweet"], tags:["Creamy/rich","Elastic chewy","Cold","Intense flavor"] },
+  { name:"Mochi ice cream", sweetSavory:["Sweet"], tags:["Elastic chewy","Creamy/rich","Cold","Mild flavor"] },
+  { name:"Swedish fish / gummies", sweetSavory:["Sweet"], tags:["Elastic chewy","Intense flavor"] },
+  { name:"Boba tea / boba juice", sweetSavory:["Sweet"], tags:["Elastic chewy","Cold","Creamy/rich","Intense flavor"] },
+  { name:"Chocolate-covered raisins", sweetSavory:["Sweet"], tags:["Elastic chewy","Creamy/rich","Intense flavor"] },
+  { name:"Chocolate-covered pretzels", sweetSavory:["Sweet"], tags:["Hard crunch","Dry","Intense flavor"] },
+  { name:"Chocolate-covered cashews", sweetSavory:["Sweet"], tags:["Light crisp","Dry","Intense flavor"] },
+  { name:"Kinder bar", sweetSavory:["Sweet"], tags:["Light crisp","Creamy/rich","Intense flavor"] },
+  { name:"Cold watermelon", sweetSavory:["Sweet"], tags:["Light crisp","Cold","Mild flavor"] },
+  { name:"Oatmeal / Cream of Wheat", sweetSavory:["Sweet"], tags:["Soft","Creamy/rich","Warm","Mild flavor"] },
+  { name:"Bread/pita + cookie butter + banana", sweetSavory:["Sweet"], tags:["Soft","Creamy/rich","Intense flavor"] },
+  { name:"Peanut butter and jelly sandwich", sweetSavory:["Sweet","Savory","Both"], tags:["Soft","Creamy/rich","Mild flavor"] },
+  { name:"Oreo milkshake", sweetSavory:["Sweet"], tags:["No chewing","Creamy/rich","Cold","Intense flavor"] },
+  { name:"Strawberry milkshake", sweetSavory:["Sweet"], tags:["No chewing","Creamy/rich","Cold","Intense flavor"] },
+  { name:"Breakfast drink", sweetSavory:["Sweet"], tags:["No chewing","Creamy/rich","Cold","Mild flavor","Intense flavor"] },
+  { name:"Strawberry breakfast drink", sweetSavory:["Sweet"], tags:["No chewing","Creamy/rich","Cold","Mild flavor","Intense flavor"] },
+  { name:"Soylent Original with/without banana", sweetSavory:["Sweet"], tags:["No chewing","Creamy/rich","Mild flavor"] },
+  { name:"Applesauce", sweetSavory:["Sweet"], tags:["No chewing","Soft","Mild flavor"] },
+  { name:"Cranberry shiver / icy", sweetSavory:["Sweet"], tags:["No chewing","Cold","Intense flavor"] },
+  { name:"Freezer pops / ice pops", sweetSavory:["Sweet"], tags:["No chewing","Cold","Intense flavor"] },
+  { name:"Hot chocolate", sweetSavory:["Sweet"], tags:["No chewing","Creamy/rich","Warm","Intense flavor"] },
+  { name:"Tea / coffee", sweetSavory:["Sweet"], tags:["No chewing","Warm","Mild flavor"] },
+
+  { name:"Doritos", sweetSavory:["Savory"], tags:["Hard crunch","Dry","Intense flavor"] },
+  { name:"Ranch rice cakes", sweetSavory:["Savory"], tags:["Hard crunch","Dry","Intense flavor"] },
+  { name:"Chips + dip", sweetSavory:["Savory"], tags:["Hard crunch","Creamy/rich","Cold","Intense flavor"] },
+  { name:"Goldfish / Cheez-Its / cheese crackers", sweetSavory:["Savory"], tags:["Hard crunch","Dry","Intense flavor"] },
+  { name:"Cheese and peanut butter crackers", sweetSavory:["Savory","Both"], tags:["Light crisp","Dry","Intense flavor"] },
+  { name:"Nachos + cheese", sweetSavory:["Savory"], tags:["Hard crunch","Creamy/rich","Warm","Mild flavor"] },
+  { name:"Nachos + meat + cheese", sweetSavory:["Savory"], tags:["Hard crunch","Soft","Creamy/rich","Warm","Mild flavor","Intense flavor"] },
+  { name:"Tortillas + warm cheesy spinach dip", sweetSavory:["Savory"], tags:["Hard crunch","Creamy/rich","Warm","Mild flavor"] },
+  { name:"Tuna crackers", sweetSavory:["Savory"], tags:["Hard crunch","Soft","Intense flavor"] },
+  { name:"Tuna packets", sweetSavory:["Savory"], tags:["Soft","Intense flavor"] },
+  { name:"Mac and cheese", sweetSavory:["Savory"], tags:["Soft","Creamy/rich","Warm","Mild flavor"] },
+  { name:"Garlic butter spaghetti", sweetSavory:["Savory"], tags:["Soft","Creamy/rich","Warm","Mild flavor"] },
+  { name:"Cheesy mashed potatoes", sweetSavory:["Savory"], tags:["No chewing","Soft","Creamy/rich","Warm","Mild flavor"] },
+  { name:"Medium/soft-boiled eggs", sweetSavory:["Savory"], tags:["Soft","Creamy/rich","Mild flavor"] },
+  { name:"Over-easy eggs + buttery toast", sweetSavory:["Savory"], tags:["Soft","Light crisp","Creamy/rich","Warm","Mild flavor"] },
+  { name:"Chicken nuggets", sweetSavory:["Savory"], tags:["Light crisp","Soft","Warm","Mild flavor"] },
+  { name:"French fries", sweetSavory:["Savory"], tags:["Light crisp","Soft","Warm","Mild flavor"] },
+  { name:"Pizza rolls", sweetSavory:["Savory"], tags:["Light crisp","Soft","Warm","Mild flavor","Intense flavor"] },
+  { name:"Pizza slice", sweetSavory:["Savory"], tags:["Soft","Light crisp","Creamy/rich","Warm","Mild flavor","Intense flavor"] },
+  { name:"Burger", sweetSavory:["Savory"], tags:["Soft","Light crisp","Creamy/rich","Warm","Mild flavor","Intense flavor"] },
+  { name:"Grilled cheese", sweetSavory:["Savory"], tags:["Light crisp","Soft","Creamy/rich","Warm","Mild flavor"] },
+  { name:"Ham and cheese melt", sweetSavory:["Savory"], tags:["Light crisp","Soft","Creamy/rich","Warm","Mild flavor"] },
+  { name:"Quesadilla + sour cream", sweetSavory:["Savory"], tags:["Light crisp","Soft","Creamy/rich","Warm","Cold","Mild flavor"] },
+  { name:"Cucumber sandwiches", sweetSavory:["Savory"], tags:["Hard crunch","Soft","Creamy/rich","Cold","Mild flavor"] },
+  { name:"Cucumber jar snack", sweetSavory:["Savory"], tags:["Hard crunch","Cold","Mild flavor"] },
+  { name:"Sandwichitos", sweetSavory:["Savory"], tags:["Soft","Creamy/rich","Mild flavor"] },
+  { name:"Mini charcuterie", sweetSavory:["Savory","Both"], tags:["Soft","Light crisp","Creamy/rich","Mild flavor"] },
+  { name:"Crackers + Laughing Cow cheese", sweetSavory:["Savory"], tags:["Light crisp","Creamy/rich","Mild flavor"] },
+  { name:"Pita bread + labneh", sweetSavory:["Savory"], tags:["Soft","Creamy/rich","Mild flavor"] },
+  { name:"Carrot soup", sweetSavory:["Savory"], tags:["No chewing","Creamy/rich","Warm","Mild flavor"] },
+  { name:"Chicken broth", sweetSavory:["Savory"], tags:["No chewing","Warm","Mild flavor"] },
+  { name:"Ramen + eggs", sweetSavory:["Savory"], tags:["Soft","Warm","Mild flavor"] }
+];
+
+const sensoryOptions = [
+  "Hard crunch",
+  "Light crisp",
+  "Soft",
+  "Elastic chewy",
+  "Creamy/rich",
+  "No chewing",
+  "I'm not sure"
+];
+
+const extraOptions = [
+  "Cold",
+  "Warm",
+  "Intense flavor",
+  "Mild flavor",
+  "Dry",
+  "Nothing specific"
+];
+
+const feelingOptions = [
+  "Lonely",
+  "Sad",
+  "Overwhelmed",
+  "Anxious",
+  "Restless",
+  "Bored",
+  "Overstimulated",
+  "Tired",
+  "Frustrated",
+  "Burdened",
+  "Just hungry",
+  "I'm not sure"
+];
+
+let sweetSavory = "";
+let sensoryChoices = [];
+let extraChoices = [];
+let chosenSnack = "";
+
+function showPage1() {
+  document.getElementById("question").innerHTML =
+    "<h2>Sweet or savory?</h2>";
+
+  document.getElementById("answers").innerHTML = `
+    <button onclick="chooseSweetSavory('Sweet')">Sweet</button>
+    <button onclick="chooseSweetSavory('Savory')">Savory</button>
+    <button onclick="chooseSweetSavory('Both')">Both</button>
+    <button onclick="chooseSweetSavory('Not sure')">I'm not sure</button>
+  `;
+
+  document.getElementById("results").innerHTML = `
+    <button class="secondaryButton" onclick="showHistory()">View history</button>
+    <button class="secondaryButton" onclick="showPatterns()">View patterns</button>
+  `;
+}
+
+function chooseSweetSavory(choice) {
+  sweetSavory = choice;
+  showPage2();
+}
+
+function showPage2() {
+  document.getElementById("question").innerHTML =
+    "<h2>What sounds good?</h2><p>Select all that apply.</p>";
+
+  let html = "";
+
+  sensoryOptions.forEach(option => {
+    html += `
+      <div class="option">
+        <label>
+          <input type="checkbox" name="sensory" value="${option}">
+          ${option}
+        </label>
+      </div>
+    `;
+  });
+
+  html += `
+    <button onclick="savePage2()">Next</button>
+    <button class="secondaryButton" onclick="showPage1()">← Back</button>
+  `;
+
+  document.getElementById("answers").innerHTML = html;
+  document.getElementById("results").innerHTML = "";
+}
+
+function savePage2() {
+  const checked = document.querySelectorAll('input[name="sensory"]:checked');
+  sensoryChoices = Array.from(checked).map(item => item.value);
+  showPage3();
+}
+
+function showPage3() {
+  document.getElementById("question").innerHTML =
+    "<h2>Anything else important?</h2><p>Optional must-haves.</p>";
+
+  let html = "";
+
+  extraOptions.forEach(option => {
+    html += `
+      <div class="option">
+        <label>
+          <input type="checkbox" name="extra" value="${option}">
+          ${option}
+        </label>
+      </div>
+    `;
+  });
+
+  html += `
+    <button onclick="savePage3()">Show snacks</button>
+    <button class="secondaryButton" onclick="showPage2()">← Back</button>
+  `;
+
+  document.getElementById("answers").innerHTML = html;
+  document.getElementById("results").innerHTML = "";
+}
+
+function savePage3() {
+  const checked = document.querySelectorAll('input[name="extra"]:checked');
+  extraChoices = Array.from(checked).map(item => item.value);
+
+  if (extraChoices.includes("Nothing specific")) {
+    extraChoices = [];
+  }
+
+  showResults();
+}
+
+function scoreSnack(snack) {
+  if (sweetSavory !== "Not sure") {
+    if (sweetSavory === "Both" && !snack.sweetSavory.includes("Both")) {
+      return -1;
+    }
+
+    if (
+      sweetSavory !== "Both" &&
+      !snack.sweetSavory.includes(sweetSavory) &&
+      !snack.sweetSavory.includes("Both")
+    ) {
+      return -1;
+    }
+  }
+
+  if (!sensoryChoices.includes("I'm not sure")) {
+    for (let choice of sensoryChoices) {
+      if (!snack.tags.includes(choice)) {
+        return -1;
+      }
+    }
+
+    if (
+      !sensoryChoices.includes("Hard crunch") &&
+      snack.tags.includes("Hard crunch")
+    ) {
+      return -1;
+    }
+  }
+
+  for (let choice of extraChoices) {
+    if (["Cold", "Warm", "Dry"].includes(choice) && !snack.tags.includes(choice)) {
+      return -1;
+    }
+
+    if (choice === "Mild flavor" && !snack.tags.includes("Mild flavor")) {
+      return -1;
+    }
+
+    if (choice === "Intense flavor" && !snack.tags.includes("Intense flavor")) {
+      return -1;
+    }
+  }
+
+  let score = 0;
+
+  sensoryChoices.forEach(choice => {
+    if (choice !== "I'm not sure" && snack.tags.includes(choice)) {
+      score += 5;
+    }
+  });
+
+  extraChoices.forEach(choice => {
+    if (
+      choice === "Mild flavor" &&
+      snack.tags.includes("Mild flavor") &&
+      !snack.tags.includes("Intense flavor")
+    ) {
+      score += 4;
+    } else if (
+      choice === "Intense flavor" &&
+      snack.tags.includes("Intense flavor") &&
+      !snack.tags.includes("Mild flavor")
+    ) {
+      score += 4;
+    } else if (snack.tags.includes(choice)) {
+      score += 1;
+    }
+  });
+
+  return score;
+}
+
+function showResults() {
+  const ranked = snacks
+    .map(snack => ({ ...snack, score: scoreSnack(snack) }))
+    .filter(snack => snack.score >= 0)
+    .sort((a, b) => b.score - a.score);
+
+  document.getElementById("question").innerHTML =
+    "<h2>Possible snacks</h2>";
+
+  let html = "";
+
+  if (ranked.length === 0) {
+    html += `<p>No matches found yet.</p>`;
+  } else {
+    ranked.forEach(snack => {
+      html += `
+        <div class="snack" onclick="chooseSnack('${snack.name}')">
+          <strong>${snack.name}</strong>
+          <div class="tags">${snack.tags.join(", ")}</div>
+        </div>
+      `;
+    });
+  }
+
+  html += `
+    <button class="secondaryButton" onclick="showPage3()">← Back</button>
+    <button class="secondaryButton" onclick="restart()">Start over</button>
+  `;
+
+  document.getElementById("answers").innerHTML = "";
+  document.getElementById("results").innerHTML = html;
+}
+
+function chooseSnack(name) {
+  chosenSnack = name;
+
+  document.getElementById("question").innerHTML =
+    `<h2>${name}</h2><p>How are you feeling?</p>`;
+
+  let html = "";
+
+  feelingOptions.forEach(option => {
+    html += `
+      <div class="option">
+        <label>
+          <input type="checkbox" name="feeling" value="${option}">
+          ${option}
+        </label>
+      </div>
+    `;
+  });
+
+  html += `
+    <button onclick="saveHistory()">Save</button>
+    <button class="secondaryButton" onclick="showResults()">← Back</button>
+  `;
+
+  document.getElementById("answers").innerHTML = html;
+  document.getElementById("results").innerHTML = "";
+}
+
+function saveHistory() {
+  const checked = document.querySelectorAll('input[name="feeling"]:checked');
+  let feelings = Array.from(checked).map(item => item.value);
+
+  if (feelings.length === 0) {
+    feelings = ["I'm not sure"];
+  }
+
+  const entry = {
+    date: new Date().toLocaleString(),
+    snack: chosenSnack,
+    sweetSavory,
+    sensoryChoices,
+    extraChoices,
+    feelings
+  };
+
+  let history = JSON.parse(localStorage.getItem("snackHistory")) || [];
+  history.push(entry);
+  localStorage.setItem("snackHistory", JSON.stringify(history));
+
+  document.getElementById("question").innerHTML = "<h2>Saved!</h2>";
+  document.getElementById("answers").innerHTML = `
+    <button onclick="restart()">Start over</button>
+    <button class="secondaryButton" onclick="showHistory()">View history</button>
+  `;
+  document.getElementById("results").innerHTML = "";
+}
+
+function showHistory() {
+  const history = JSON.parse(localStorage.getItem("snackHistory")) || [];
+
+  document.getElementById("question").innerHTML = "<h2>History</h2>";
+
+  let html = "";
+
+  if (history.length === 0) {
+    html += `<p>No saved entries yet.</p>`;
+  } else {
+    history.slice().reverse().forEach(entry => {
+      html += `
+        <div class="historyBox">
+          <strong>${entry.snack}</strong><br>
+          ${entry.date}<br><br>
+          Feelings: ${entry.feelings.join(", ")}<br>
+          Sweet/Savory: ${entry.sweetSavory}<br>
+          Sensory: ${entry.sensoryChoices.join(", ") || "—"}<br>
+          Extras: ${entry.extraChoices.join(", ") || "—"}
+        </div>
+      `;
+    });
+  }
+
+  html += `
+    <button class="secondaryButton" onclick="restart()">Back to snack picker</button>
+  `;
+
+  document.getElementById("answers").innerHTML = "";
+  document.getElementById("results").innerHTML = html;
+}
+
+function showPatterns() {
+  const history = JSON.parse(localStorage.getItem("snackHistory")) || [];
+  const patternMap = {};
+
+  history.forEach(entry => {
+    entry.feelings.forEach(feeling => {
+      if (!patternMap[feeling]) {
+        patternMap[feeling] = {};
+      }
+
+      patternMap[feeling][entry.snack] =
+        (patternMap[feeling][entry.snack] || 0) + 1;
+    });
+  });
+
+  document.getElementById("question").innerHTML = "<h2>Patterns</h2>";
+
+  let html = "";
+
+  if (history.length === 0) {
+    html += `<p>No saved entries yet.</p>`;
+  } else {
+    Object.keys(patternMap).forEach(feeling => {
+      html += `<div class="historyBox"><strong>${feeling}</strong><br><br>`;
+
+      const sortedSnacks = Object.entries(patternMap[feeling])
+        .sort((a, b) => b[1] - a[1]);
+
+      sortedSnacks.forEach(([snack, count]) => {
+        html += `${snack}: ${count}<br>`;
+      });
+
+      html += `</div>`;
+    });
+  }
+
+  html += `
+    <button class="secondaryButton" onclick="restart()">Back to snack picker</button>
+  `;
+
+  document.getElementById("answers").innerHTML = "";
+  document.getElementById("results").innerHTML = html;
+}
+
+function restart() {
+  sweetSavory = "";
+  sensoryChoices = [];
+  extraChoices = [];
+  chosenSnack = "";
+  showPage1();
+}
+
+showPage1();
+</script>
+</body>
+</html>
