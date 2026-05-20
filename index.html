@@ -88,83 +88,84 @@ button:hover {
 
 <script>
 const snacks = [
-  { name:"Oreos dipped in milk", sweetSavory:["Sweet"], tags:["Creamy/rich","Soft","Cold","Intense flavor"] },
-  { name:"Cheesecake bites", sweetSavory:["Sweet"], tags:["Creamy/rich","Soft","Cold","Intense flavor"] },
-  { name:"Doughnuts", sweetSavory:["Sweet"], tags:["Soft","Creamy/rich","Intense flavor"] },
-  { name:"Cake with icing", sweetSavory:["Sweet"], tags:["Soft","Creamy/rich","Intense flavor"] },
-  { name:"Cinnamon rolls", sweetSavory:["Sweet"], tags:["Soft","Creamy/rich","Warm","Intense flavor"] },
-  { name:"Pop-Tarts", sweetSavory:["Sweet"], tags:["Light crisp","Soft","Intense flavor"] },
-  { name:"French toast sticks", sweetSavory:["Sweet"], tags:["Light crisp","Soft","Warm","Mild flavor","Intense flavor"] },
-  { name:"Waffles", sweetSavory:["Sweet"], tags:["Light crisp","Soft","Warm","Creamy/rich","Mild flavor","Intense flavor"] },
-  { name:"Cinnamon sugar toast", sweetSavory:["Sweet"], tags:["Soft","Light crisp","Warm","Mild flavor"] },
-  { name:"Blueberry ricotta English muffin", sweetSavory:["Sweet"], tags:["Light crisp","Soft","Creamy/rich","Mild flavor"] },
-  { name:"Hot crispy cookie + ice cream", sweetSavory:["Sweet"], tags:["Light crisp","Soft","Creamy/rich","Warm","Cold","Intense flavor"] },
-  { name:"Cereal + milk", sweetSavory:["Sweet"], tags:["Hard crunch","Creamy/rich","Cold","Mild flavor"] },
-  { name:"Granola", sweetSavory:["Sweet"], tags:["Hard crunch","Dry","Mild flavor"] },
-  { name:"Ice cream cake", sweetSavory:["Sweet"], tags:["Creamy/rich","Hard crunch","Cold","Intense flavor"] },
-  { name:"Cookie dough ice cream", sweetSavory:["Sweet"], tags:["Creamy/rich","Elastic chewy","Cold","Intense flavor"] },
-  { name:"Mochi ice cream", sweetSavory:["Sweet"], tags:["Elastic chewy","Creamy/rich","Cold","Mild flavor"] },
-  { name:"Swedish fish / gummies", sweetSavory:["Sweet"], tags:["Elastic chewy","Intense flavor"] },
-  { name:"Boba tea / boba juice", sweetSavory:["Sweet"], tags:["Elastic chewy","Cold","Creamy/rich","Intense flavor"] },
-  { name:"Chocolate-covered raisins", sweetSavory:["Sweet"], tags:["Elastic chewy","Creamy/rich","Intense flavor"] },
-  { name:"Chocolate-covered pretzels", sweetSavory:["Sweet"], tags:["Hard crunch","Dry","Intense flavor"] },
-  { name:"Chocolate-covered cashews", sweetSavory:["Sweet"], tags:["Light crisp","Dry","Intense flavor"] },
-  { name:"Kinder bar", sweetSavory:["Sweet"], tags:["Light crisp","Creamy/rich","Intense flavor"] },
-  { name:"Cold watermelon", sweetSavory:["Sweet"], tags:["Light crisp","Cold","Mild flavor"] },
-  { name:"Oatmeal / Cream of Wheat", sweetSavory:["Sweet"], tags:["Soft","Creamy/rich","Warm","Mild flavor"] },
-  { name:"Bread/pita + cookie butter + banana", sweetSavory:["Sweet"], tags:["Soft","Creamy/rich","Intense flavor"] },
-  { name:"Peanut butter and jelly sandwich", sweetSavory:["Sweet","Savory","Both"], tags:["Soft","Creamy/rich","Mild flavor"] },
-  { name:"Oreo milkshake", sweetSavory:["Sweet"], tags:["No chewing","Creamy/rich","Cold","Intense flavor"] },
-  { name:"Strawberry milkshake", sweetSavory:["Sweet"], tags:["No chewing","Creamy/rich","Cold","Intense flavor"] },
-  { name:"Breakfast drink", sweetSavory:["Sweet"], tags:["No chewing","Creamy/rich","Cold","Mild flavor","Intense flavor"] },
-  { name:"Strawberry breakfast drink", sweetSavory:["Sweet"], tags:["No chewing","Creamy/rich","Cold","Mild flavor","Intense flavor"] },
-  { name:"Soylent Original with/without banana", sweetSavory:["Sweet"], tags:["No chewing","Creamy/rich","Mild flavor"] },
-  { name:"Applesauce", sweetSavory:["Sweet"], tags:["No chewing","Soft","Mild flavor"] },
-  { name:"Cranberry shiver", sweetSavory:["Sweet"], tags:["No chewing","Cold","Intense flavor"] },
-  { name:"Freezer pops / ice pops", sweetSavory:["Sweet"], tags:["No chewing","Cold","Intense flavor"] },
-  { name:"Hot chocolate", sweetSavory:["Sweet"], tags:["No chewing","Creamy/rich","Warm","Intense flavor"] },
-  { name:"Tea / coffee", sweetSavory:["Sweet"], tags:["No chewing","Warm","Mild flavor"] },
+  { name:"Oreos dipped in milk", sweetSavory:["Sweet"], tags:["Creamy/rich","Soft","Cold","Intense flavor","Simple assembly"] },
+  { name:"Cheesecake bites", sweetSavory:["Sweet"], tags:["Creamy/rich","Soft","Cold","Intense flavor","No effort"] },
+  { name:"Doughnuts", sweetSavory:["Sweet"], tags:["Soft","Creamy/rich","Intense flavor","No effort"] },
+  { name:"Cake with icing", sweetSavory:["Sweet"], tags:["Soft","Creamy/rich","Intense flavor","No effort","Takeout / restaurant"] },
+  { name:"Cinnamon rolls", sweetSavory:["Sweet"], tags:["Soft","Creamy/rich","Warm","Intense flavor","Simple assembly"] },
+  { name:"Pop-Tarts", sweetSavory:["Sweet"], tags:["Light crisp","Soft","Intense flavor","No effort"] },
+  { name:"French toast sticks", sweetSavory:["Sweet"], tags:["Light crisp","Soft","Warm","Mild flavor","Intense flavor","Simple assembly","Active cooking"] },
+  { name:"Waffles", sweetSavory:["Sweet"], tags:["Light crisp","Soft","Warm","Creamy/rich","Mild flavor","Intense flavor","Simple assembly"] },
+  { name:"Cinnamon sugar toast", sweetSavory:["Sweet"], tags:["Soft","Light crisp","Warm","Mild flavor","Simple assembly"] },
+  { name:"Blueberry ricotta English muffin", sweetSavory:["Sweet"], tags:["Light crisp","Soft","Creamy/rich","Mild flavor","Simple assembly"] },
+  { name:"Hot crispy cookie + ice cream", sweetSavory:["Sweet"], tags:["Light crisp","Soft","Creamy/rich","Warm","Cold","Intense flavor","Takeout / restaurant"] },
+  { name:"Cereal + milk", sweetSavory:["Sweet"], tags:["Hard crunch","Creamy/rich","Cold","Mild flavor","No effort"] },
+  { name:"Granola", sweetSavory:["Sweet"], tags:["Hard crunch","Dry","Mild flavor","No effort"] },
+  { name:"Ice cream cake", sweetSavory:["Sweet"], tags:["Creamy/rich","Hard crunch","Cold","Intense flavor","No effort"] },
+  { name:"Cookie dough ice cream", sweetSavory:["Sweet"], tags:["Creamy/rich","Elastic chewy","Cold","Intense flavor","No effort"] },
+  { name:"Mochi ice cream", sweetSavory:["Sweet"], tags:["Elastic chewy","Creamy/rich","Cold","Mild flavor","No effort"] },
+  { name:"Swedish fish / gummies", sweetSavory:["Sweet"], tags:["Elastic chewy","Intense flavor","No effort"] },
+  { name:"Boba tea / boba juice", sweetSavory:["Sweet"], tags:["Elastic chewy","Cold","Creamy/rich","Intense flavor","Takeout / restaurant"] },
+  { name:"Chocolate-covered raisins", sweetSavory:["Sweet"], tags:["Elastic chewy","Creamy/rich","Intense flavor","No effort"] },
+  { name:"Chocolate-covered pretzels", sweetSavory:["Sweet"], tags:["Hard crunch","Dry","Intense flavor","No effort"] },
+  { name:"Chocolate-covered cashews", sweetSavory:["Sweet"], tags:["Light crisp","Dry","Intense flavor","No effort"] },
+  { name:"Kinder bar", sweetSavory:["Sweet"], tags:["Light crisp","Creamy/rich","Intense flavor","No effort"] },
+  { name:"Cold watermelon", sweetSavory:["Sweet"], tags:["Light crisp","Cold","Mild flavor","No effort","Simple assembly"] },
+  { name:"Oatmeal / Cream of Wheat", sweetSavory:["Sweet"], tags:["Soft","Creamy/rich","Warm","Mild flavor","Active cooking"] },
+  { name:"Bread/pita + cookie butter + banana", sweetSavory:["Sweet"], tags:["Soft","Creamy/rich","Intense flavor","Simple assembly"] },
+  { name:"Peanut butter and jelly sandwich", sweetSavory:["Sweet","Savory","Both"], tags:["Soft","Creamy/rich","Mild flavor","Simple assembly"] },
+  { name:"Oreo milkshake", sweetSavory:["Sweet"], tags:["No chewing","Creamy/rich","Cold","Intense flavor","Takeout / restaurant"] },
+  { name:"Strawberry milkshake", sweetSavory:["Sweet"], tags:["No chewing","Creamy/rich","Cold","Intense flavor","Takeout / restaurant"] },
+  { name:"Breakfast drink", sweetSavory:["Sweet"], tags:["No chewing","Creamy/rich","Cold","Mild flavor","Intense flavor","Simple assembly"] },
+  { name:"Strawberry breakfast drink", sweetSavory:["Sweet"], tags:["No chewing","Creamy/rich","Cold","Mild flavor","Intense flavor","Simple assembly"] },
+  { name:"Soylent Original with/without banana", sweetSavory:["Sweet"], tags:["No chewing","Creamy/rich","Mild flavor","Simple assembly"] },
+  { name:"Soylent bottle", sweetSavory:["Sweet"], tags:["No chewing","Creamy/rich","Mild flavor","No effort"] },
+  { name:"Applesauce", sweetSavory:["Sweet"], tags:["No chewing","Soft","Mild flavor","No effort"] },
+  { name:"Cranberry shiver", sweetSavory:["Sweet"], tags:["No chewing","Cold","Intense flavor","No effort"] },
+  { name:"Freezer pops / ice pops", sweetSavory:["Sweet"], tags:["Hard crunch","Cold","Intense flavor","No effort"] },
+  { name:"Hot chocolate", sweetSavory:["Sweet"], tags:["No chewing","Creamy/rich","Warm","Intense flavor","Simple assembly"] },
+  { name:"Tea / coffee", sweetSavory:["Sweet"], tags:["No chewing","Warm","Mild flavor","Simple assembly"] },
 
-  { name:"Doritos", sweetSavory:["Savory"], tags:["Hard crunch","Dry","Intense flavor"] },
-  { name:"Ranch rice cakes", sweetSavory:["Savory"], tags:["Hard crunch","Dry","Intense flavor"] },
-  { name:"Chips + dip", sweetSavory:["Savory"], tags:["Hard crunch","Creamy/rich","Cold","Intense flavor"] },
-  { name:"Goldfish / Cheez-Its / cheese crackers", sweetSavory:["Savory"], tags:["Hard crunch","Dry","Intense flavor"] },
-  { name:"Cheese and peanut butter crackers", sweetSavory:["Savory"], tags:["Light crisp","Dry","Intense flavor"] },
-  { name:"Nachos + cheese", sweetSavory:["Savory"], tags:["Hard crunch","Creamy/rich","Warm","Mild flavor"] },
-  { name:"Nachos + meat + cheese", sweetSavory:["Savory"], tags:["Hard crunch","Soft","Creamy/rich","Warm","Mild flavor","Intense flavor"] },
-  { name:"Tortillas + warm cheesy spinach dip", sweetSavory:["Savory"], tags:["Hard crunch","Creamy/rich","Warm","Mild flavor"] },
-  { name:"Tuna crackers", sweetSavory:["Savory"], tags:["Hard crunch","Soft","Intense flavor"] },
-  { name:"Tuna packet", sweetSavory:["Savory"], tags:["Soft","Intense flavor"] },
-  { name:"Mac and cheese", sweetSavory:["Savory"], tags:["Soft","Creamy/rich","Warm","Mild flavor"] },
-  { name:"Garlic butter spaghetti", sweetSavory:["Savory"], tags:["Soft","Creamy/rich","Warm","Mild flavor"] },
-  { name:"Cheesy mashed potatoes", sweetSavory:["Savory"], tags:["No chewing","Soft","Creamy/rich","Warm","Mild flavor"] },
-  { name:"Medium/soft-boiled eggs", sweetSavory:["Savory"], tags:["Soft","Creamy/rich","Mild flavor"] },
-  { name:"Over-easy eggs + buttery toast", sweetSavory:["Savory"], tags:["Soft","Light crisp","Creamy/rich","Warm","Mild flavor"] },
-  { name:"Chicken nuggets", sweetSavory:["Savory"], tags:["Light crisp","Soft","Warm","Mild flavor"] },
-  { name:"French fries", sweetSavory:["Savory"], tags:["Light crisp","Soft","Warm","Mild flavor"] },
-  { name:"Pizza rolls", sweetSavory:["Savory"], tags:["Light crisp","Soft","Warm","Mild flavor","Intense flavor"] },
-  { name:"Pizza slice", sweetSavory:["Savory"], tags:["Soft","Light crisp","Creamy/rich","Warm","Mild flavor","Intense flavor"] },
-  { name:"Burger", sweetSavory:["Savory"], tags:["Soft","Light crisp","Creamy/rich","Warm","Mild flavor","Intense flavor"] },
+  { name:"Doritos", sweetSavory:["Savory"], tags:["Hard crunch","Dry","Intense flavor","No effort"] },
+  { name:"Ranch rice cakes", sweetSavory:["Savory"], tags:["Hard crunch","Dry","Intense flavor","No effort"] },
+  { name:"Chips + dip", sweetSavory:["Savory"], tags:["Hard crunch","Creamy/rich","Cold","Intense flavor","No effort"] },
+  { name:"Goldfish / Cheez-Its / cheese crackers", sweetSavory:["Savory"], tags:["Hard crunch","Dry","Intense flavor","No effort"] },
+  { name:"Cheese and peanut butter crackers", sweetSavory:["Savory"], tags:["Light crisp","Dry","Intense flavor","No effort"] },
+  { name:"Nachos + cheese", sweetSavory:["Savory"], tags:["Hard crunch","Creamy/rich","Warm","Mild flavor","Takeout / restaurant"] },
+  { name:"Nachos + meat + cheese", sweetSavory:["Savory"], tags:["Hard crunch","Soft","Creamy/rich","Warm","Mild flavor","Intense flavor","Active cooking"] },
+  { name:"Tortillas + warm cheesy spinach dip", sweetSavory:["Savory"], tags:["Hard crunch","Creamy/rich","Warm","Mild flavor","Simple assembly"] },
+  { name:"Tuna crackers", sweetSavory:["Savory"], tags:["Hard crunch","Soft","Intense flavor","Simple assembly"] },
+  { name:"Tuna packet", sweetSavory:["Savory"], tags:["Soft","Intense flavor","No effort"] },
+  { name:"Mac and cheese", sweetSavory:["Savory"], tags:["Soft","Creamy/rich","Warm","Mild flavor","Simple assembly"] },
+  { name:"Garlic butter spaghetti", sweetSavory:["Savory"], tags:["Soft","Creamy/rich","Warm","Mild flavor","Simple assembly"] },
+  { name:"Cheesy mashed potatoes", sweetSavory:["Savory"], tags:["No chewing","Soft","Creamy/rich","Warm","Mild flavor","Simple assembly"] },
+  { name:"Medium/soft-boiled eggs", sweetSavory:["Savory"], tags:["Soft","Creamy/rich","Mild flavor","Active cooking"] },
+  { name:"Over-easy eggs + buttery toast", sweetSavory:["Savory"], tags:["Soft","Light crisp","Creamy/rich","Warm","Mild flavor","Active cooking"] },
+  { name:"Chicken nuggies", sweetSavory:["Savory"], tags:["Light crisp","Soft","Warm","Mild flavor","No effort","Takeout / restaurant"] },
+  { name:"French fries", sweetSavory:["Savory"], tags:["Light crisp","Soft","Warm","Mild flavor","No effort","Takeout / restaurant"] },
+  { name:"Pizza rolls", sweetSavory:["Savory"], tags:["Light crisp","Soft","Warm","Mild flavor","Intense flavor","Simple assembly"] },
+  { name:"Pizza slice", sweetSavory:["Savory"], tags:["Soft","Light crisp","Creamy/rich","Warm","Mild flavor","Intense flavor","Takeout / restaurant"] },
+  { name:"Burger", sweetSavory:["Savory"], tags:["Soft","Light crisp","Creamy/rich","Warm","Mild flavor","Intense flavor","Takeout / restaurant"] },
   { name:"Grilled cheese", sweetSavory:["Savory"], tags:["Light crisp","Soft","Creamy/rich","Warm","Mild flavor"] },
-  { name:"Ham and cheese melt", sweetSavory:["Savory"], tags:["Light crisp","Soft","Creamy/rich","Warm","Mild flavor"] },
-  { name:"Quesadilla + sour cream", sweetSavory:["Savory"], tags:["Light crisp","Soft","Creamy/rich","Warm","Cold","Mild flavor"] },
-  { name:"Cucumber sandwiches", sweetSavory:["Savory"], tags:["Hard crunch","Soft","Creamy/rich","Cold","Mild flavor"] },
-  { name:"Cucumber jar snack", sweetSavory:["Savory"], tags:["Hard crunch","Cold","Mild flavor"] },
-  { name:"Sandwichitos", sweetSavory:["Savory"], tags:["Soft","Creamy/rich","Mild flavor"] },
-  { name:"Mini charcuterie", sweetSavory:["Savory","Both"], tags:["Soft","Light crisp","Creamy/rich","Mild flavor"] },
-  { name:"Crackers + Laughing Cow cheese", sweetSavory:["Savory"], tags:["Light crisp","Creamy/rich","Mild flavor"] },
-  { name:"Pita bread + labneh", sweetSavory:["Savory"], tags:["Soft","Creamy/rich","Mild flavor"] },
-  { name:"Carrot soup", sweetSavory:["Savory"], tags:["No chewing","Creamy/rich","Warm","Mild flavor"] },
-  { name:"Chicken broth", sweetSavory:["Savory"], tags:["No chewing","Warm","Mild flavor"] },
-  { name:"Ramen + eggs", sweetSavory:["Savory"], tags:["Soft","Warm","Mild flavor"] },
-  { name:"Drumstick cone", sweetSavory:["Sweet"], tags:["Hard crunch","Soft","Creamy/rich","Cold","Intense flavor"] },
-  { name:"Balkan breakfast", sweetSavory:["Savory"], tags:["Soft","Light crisp","Creamy/rich","Warm","Mild flavor","Intense flavor"] },
-  { name:"Paneer/tofu tikka masala", sweetSavory:["Savory"], tags: ["Soft","Creamy/rich","Warm","Intense flavor"] },
-  { name:"Chimichanga", sweetSavory:["Savory"], tags:["Soft","Light crisp","Creamy/rich","Mild flavor","Intense flavor","Warm"] },
-  { name:"Tacos", sweetSavory:["Savory"], tags:["Soft","Light crisp","Creamy/rich","Mild flavor","Intense flavor","Warm"] },
-  { name:"Horchata", sweetSavory:["Sweet"], tags:["No chewing","Cold","Creamy/rich","Mild flavor","Intense flavor"] },
-  { name:"Peanut butter", sweetSavory:["Savory","Sweet"], tags:["No chewing","Creamy/rich","Mild flavor"] },
-  { name:"Packed smoothie", sweetSavory:["Sweet"], tags:["No chewing","Cold","Mild flavor"] }
+  { name:"Ham and cheese melt", sweetSavory:["Savory"], tags:["Light crisp","Soft","Creamy/rich","Warm","Mild flavor","Active cooking"] },
+  { name:"Quesadilla + sour cream", sweetSavory:["Savory"], tags:["Light crisp","Soft","Creamy/rich","Warm","Cold","Mild flavor","Active cooking"] },
+  { name:"Cucumber sandwiches", sweetSavory:["Savory"], tags:["Hard crunch","Soft","Creamy/rich","Cold","Mild flavor","Simple assembly","Active cooking"] },
+  { name:"Cucumber jar snack", sweetSavory:["Savory"], tags:["Hard crunch","Cold","Mild flavor","Active cooking"] },
+  { name:"Sandwichitos", sweetSavory:["Savory"], tags:["Soft","Creamy/rich","Mild flavor","Simple assembly","Active cooking"] },
+  { name:"Mini charcuterie", sweetSavory:["Savory","Both"], tags:["Soft","Light crisp","Creamy/rich","Mild flavor","No effort","Simple assembly"] },
+  { name:"Crackers + Laughing Cow cheese", sweetSavory:["Savory"], tags:["Light crisp","Creamy/rich","Mild flavor","No effort","Simple assembly"] },
+  { name:"Pita bread + labneh", sweetSavory:["Savory"], tags:["Soft","Creamy/rich","Mild flavor","No effort"] },
+  { name:"Carrot soup", sweetSavory:["Savory"], tags:["No chewing","Creamy/rich","Warm","Mild flavor","Active cooking"] },
+  { name:"Chicken broth", sweetSavory:["Savory"], tags:["No chewing","Warm","Mild flavor","No effort"] },
+  { name:"Ramen + eggs", sweetSavory:["Savory"], tags:["Soft","Warm","Mild flavor","Active cooking"] },
+  { name:"Drumstick cone", sweetSavory:["Sweet"], tags:["Hard crunch","Soft","Creamy/rich","Cold","Intense flavor","No effort"] },
+  { name:"Balkan breakfast", sweetSavory:["Savory"], tags:["Soft","Light crisp","Creamy/rich","Warm","Mild flavor","Intense flavor","Active cooking"] },
+  { name:"Paneer/tofu tikka masala", sweetSavory:["Savory"], tags: ["Soft","Creamy/rich","Warm","Intense flavor","Takeout / restaurant"] },
+  { name:"Chimichanga", sweetSavory:["Savory"], tags:["Soft","Light crisp","Creamy/rich","Mild flavor","Intense flavor","Warm","Takeout / restaurant"] },
+  { name:"Tacos", sweetSavory:["Savory"], tags:["Soft","Light crisp","Creamy/rich","Mild flavor","Intense flavor","Warm","Takeout / restaurant"] },
+  { name:"Horchata", sweetSavory:["Sweet"], tags:["No chewing","Cold","Creamy/rich","Mild flavor","Intense flavor","Active cooking","Takeout / restaurant"] },
+  { name:"Peanut butter", sweetSavory:["Savory","Sweet"], tags:["No chewing","Creamy/rich","Mild flavor","No effort"] },
+  { name:"Packed smoothie", sweetSavory:["Sweet"], tags:["No chewing","Cold","Mild flavor","Simple assembly"] }
 ];
 
 const sensoryOptions = [
@@ -186,6 +187,29 @@ const extraOptions = [
   "Nothing specific"
 ];
 
+const prepOptions = [
+  {
+    value: "No effort",
+    description: "open and immediately eat/drink"
+  },
+  {
+    value: "Simple assembly",
+    description: "toast, microwave, blend, combine; very few steps"
+  },
+  {
+    value: "Active cooking",
+    description: "multiple steps, coordination, active preparation"
+  },
+  {
+    value: "Takeout / restaurant",
+    description: "outside effort, no cooking"
+  },
+  {
+    value: "Doesn't matter",
+  }
+];
+
+
 const feelingOptions = [
   "Lonely",
   "Sad",
@@ -204,6 +228,7 @@ const feelingOptions = [
 let sweetSavory = "";
 let sensoryChoices = [];
 let extraChoices = [];
+let prepChoices = [];
 let chosenSnack = "";
 
 function showPage1() {
@@ -238,7 +263,7 @@ function showPage2() {
     html += `
       <div class="option">
         <label>
-          <input type="checkbox" name="sensory" value="${option}">
+          <input type="checkbox" name="sensory" value="${option}" ${sensoryChoices.includes(option) ? "checked" : ""}>
           ${option}
         </label>
       </div>
@@ -270,7 +295,7 @@ function showPage3() {
     html += `
       <div class="option">
         <label>
-          <input type="checkbox" name="extra" value="${option}">
+          <input type="checkbox" name="extra" value="${option}" ${extraChoices.includes(option) ? "checked" : ""}>
           ${option}
         </label>
       </div>
@@ -278,7 +303,7 @@ function showPage3() {
   });
 
   html += `
-    <button onclick="savePage3()">Show snacks</button>
+    <button onclick="savePage3()">Next</button>
     <button class="secondaryButton" onclick="showPage2()">← Back</button>
   `;
 
@@ -292,6 +317,44 @@ function savePage3() {
 
   if (extraChoices.includes("Nothing specific")) {
     extraChoices = [];
+  }
+
+  showPage4();
+}
+
+function showPage4() {
+document.getElementById("question").innerHTML =
+  "<h2>How much effort can you handle?</h2><p>Select everything you're willing to do.</p>";
+
+  let html = "";
+
+  prepOptions.forEach(option => {
+    html += `
+      <div class="option">
+        <label>
+          <input type="checkbox" name="prep" value="${option.value}" ${prepChoices.includes(option.value) ? "checked" : ""}>
+          ${option.value}
+          ${option.description ? `<div class="tags">${option.description}</div>` : ""}
+        </label>
+      </div>
+    `;
+  });
+
+  html += `
+    <button onclick="savePage4()">Show snacks</button>
+    <button class="secondaryButton" onclick="showPage3()">← Back</button>
+  `;
+
+  document.getElementById("answers").innerHTML = html;
+  document.getElementById("results").innerHTML = "";
+}
+
+function savePage4() {
+  const checked = document.querySelectorAll('input[name="prep"]:checked');
+  prepChoices = Array.from(checked).map(item => item.value);
+
+  if (prepChoices.includes("Doesn't matter")) {
+    prepChoices = [];
   }
 
   showResults();
@@ -340,6 +403,12 @@ function scoreSnack(snack) {
       return -1;
     }
   }
+
+for (let choice of prepChoices) {
+  if (!snack.tags.includes(choice)) {
+    return -1;
+  }
+}
 
   let score = 0;
 
@@ -395,7 +464,7 @@ function showResults() {
   }
 
   html += `
-    <button class="secondaryButton" onclick="showPage3()">← Back</button>
+    <button class="secondaryButton" onclick="showPage4()">← Back</button>
     <button class="secondaryButton" onclick="restart()">Start over</button>
   `;
 
@@ -445,6 +514,7 @@ function saveHistory() {
     sweetSavory,
     sensoryChoices,
     extraChoices,
+    prepChoices,
     feelings
   };
 
@@ -478,6 +548,7 @@ function showHistory() {
           Feelings: ${entry.feelings.join(", ")}<br>
           Sweet/Savory: ${entry.sweetSavory}<br>
           Sensory: ${entry.sensoryChoices.join(", ") || "—"}<br>
+          Prep: ${entry.prepChoices ? entry.prepChoices.join(", ") : "—"}<br>
           Extras: ${entry.extraChoices.join(", ") || "—"}
         </div>
       `;
@@ -649,6 +720,7 @@ function restart() {
   sweetSavory = "";
   sensoryChoices = [];
   extraChoices = [];
+  prepChoices = [];
   chosenSnack = "";
   showPage1();
 }
