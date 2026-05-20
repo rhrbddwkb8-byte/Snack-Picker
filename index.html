@@ -338,7 +338,7 @@ function savePage3() {
 
 function showPage4() {
 document.getElementById("question").innerHTML =
-  "<h2>How much effort can you handle?</h2><p>Select everything you're willing to do.</p>";
+  "<h2>How much effort can you handle?</h2><p class='helperText'><span class='optionalSubtitle'>Select everything you're willing to do</span></p>";
 
   let html = "";
 
@@ -418,8 +418,12 @@ function scoreSnack(snack) {
     }
   }
 
-for (let choice of prepChoices) {
-  if (!snack.tags.includes(choice)) {
+if (prepChoices.length > 0) {
+  const matchesPrep = prepChoices.some(choice =>
+    snack.tags.includes(choice)
+  );
+
+  if (!matchesPrep) {
     return -1;
   }
 }
