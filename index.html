@@ -348,7 +348,7 @@ document.getElementById("question").innerHTML =
         <label>
           <input type="checkbox" name="prep" value="${option.value}" ${prepChoices.includes(option.value) ? "checked" : ""}>
           ${option.value}
-          ${option.description ? `<div class="tags">${option.description}</div>` : ""}
+          ${option.description ? `<div class="tags"><em>${option.description}</em></div>` : ""}
         </label>
       </div>
     `;
