@@ -116,11 +116,11 @@ const snacks = [
   { name:"Cereal + milk", sweetSavory:["Sweet"], tags:["Hard crunch","Creamy/rich","Cold","Mild flavor","No effort"] },
   { name:"Granola", sweetSavory:["Sweet"], tags:["Hard crunch","Dry","Mild flavor","No effort"] },
   { name:"Ice cream cake", sweetSavory:["Sweet"], tags:["Creamy/rich","Hard crunch","Cold","Intense flavor","No effort"] },
-  { name:"Cookie dough ice cream", sweetSavory:["Sweet"], tags:["Creamy/rich","Elastic chewy","Cold","Intense flavor","No effort"] },
-  { name:"Mochi ice cream", sweetSavory:["Sweet"], tags:["Elastic chewy","Creamy/rich","Cold","Mild flavor","No effort"] },
-  { name:"Swedish fish / gummies", sweetSavory:["Sweet"], tags:["Elastic chewy","Intense flavor","No effort"] },
-  { name:"Boba tea / boba juice", sweetSavory:["Sweet"], tags:["Elastic chewy","Cold","Creamy/rich","Intense flavor","Takeout / restaurant"] },
-  { name:"Chocolate-covered raisins", sweetSavory:["Sweet"], tags:["Elastic chewy","Creamy/rich","Intense flavor","No effort"] },
+  { name:"Cookie dough ice cream", sweetSavory:["Sweet"], tags:["Creamy/rich","Dense chewy","Cold","Intense flavor","No effort"] },
+  { name:"Mochi ice cream", sweetSavory:["Sweet"], tags:["Dense chewy","Creamy/rich","Cold","Mild flavor","No effort"] },
+  { name:"Swedish fish / gummies", sweetSavory:["Sweet"], tags:["Dense chewy","Intense flavor","No effort"] },
+  { name:"Boba tea / boba juice", sweetSavory:["Sweet"], tags:["Dense chewy","Cold","Creamy/rich","Intense flavor","Takeout / restaurant"] },
+  { name:"Chocolate-covered raisins", sweetSavory:["Sweet"], tags:["Dense chewy","Creamy/rich","Intense flavor","No effort"] },
   { name:"Chocolate-covered pretzels", sweetSavory:["Sweet"], tags:["Hard crunch","Dry","Intense flavor","No effort"] },
   { name:"Chocolate-covered cashews", sweetSavory:["Sweet"], tags:["Light crisp","Dry","Intense flavor","No effort"] },
   { name:"Kinder bar", sweetSavory:["Sweet"], tags:["Light crisp","Creamy/rich","Intense flavor","No effort"] },
@@ -186,7 +186,7 @@ const sensoryOptions = [
   "Hard crunch",
   "Light crisp",
   "Soft",
-  "Elastic chewy",
+  "Dense chewy",
   "Creamy/rich",
   "No chewing",
   "I'm not sure"
@@ -269,8 +269,8 @@ function chooseSweetSavory(choice) {
 
 function showPage2() {
   document.getElementById("question").innerHTML =
-  "<h2>What sounds good?</h2><p class='helperText'><em>✱ Only select traits the snack <strong>must</strong> have</em><br><em>✱ Unselected traits may still appear</em></p>";
-
+  "<h2>What sounds good?</h2><p class='helperText'><em>✱ Select only <strong>must-haves</strong></em><br><em>(If you're still open to it, leave it unselected)</em><br><br><em>✱ Only select multiple if you want them <strong>together</strong></em></p>";
+  
   let html = "";
 
   sensoryOptions.forEach(option => {
@@ -301,7 +301,7 @@ function savePage2() {
 
 function showPage3() {
   document.getElementById("question").innerHTML =
-  "<h2>Anything else important?</h2><p class='helperText'><span class='optionalSubtitle'>Optional must-haves</span><br><br><em>✱ Only select multiple if you want them together</em></p>";
+  "<h2>Anything else important?</h2><p class='helperText'><span class='optionalSubtitle'>More optional must-haves</span></p>";
 
   let html = "";
 
