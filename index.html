@@ -69,6 +69,20 @@ button:hover {
   margin-top: 5px;
 }
 
+.helperText {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+  margin-top: -6px;
+  margin-bottom: 18px;
+  padding-left: 12px;
+}
+
+.optionalSubtitle {
+  display: inline-block;
+  margin-top: -8px;
+}
+
 .historyBox {
   background: #f3f3f3;
   padding: 14px;
@@ -255,7 +269,7 @@ function chooseSweetSavory(choice) {
 
 function showPage2() {
   document.getElementById("question").innerHTML =
-    "<h2>What sounds good?</h2><p>Select all that apply.</p>";
+  "<h2>What sounds good?</h2><p class='helperText'><em>✱ Only select traits the snack must have.</em><br><em>✱ Unselected traits may still appear.</em></p>";
 
   let html = "";
 
@@ -287,7 +301,7 @@ function savePage2() {
 
 function showPage3() {
   document.getElementById("question").innerHTML =
-    "<h2>Anything else important?</h2><p>Optional must-haves.</p>";
+  "<h2>Anything else important?</h2><p class='helperText'><span class='optionalSubtitle'>Optional must-haves</span><br><br><em>✱ Only select multiple if you want them together.</em></p>";
 
   let html = "";
 
