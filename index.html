@@ -269,7 +269,7 @@ function chooseSweetSavory(choice) {
 
 function showPage2() {
   document.getElementById("question").innerHTML =
-  "<h2>What sounds good?</h2><p class='helperText'><em>✱ Select only <strong>must-haves</strong></em><br><em>(If you're still open to it, leave it unselected)</em><br><br><em>✱ Only select multiple if you want them <strong>together</strong></em></p>";
+  "<h2>What sounds good?</h2><p class='helperText'><em>✱ Select only <strong>must-haves</strong></em><br><em>✱ Leave anything optional unselected</em><br><em>✱ Multiple selections = all in one snack</em></p>";
   
   let html = "";
 
@@ -301,7 +301,7 @@ function savePage2() {
 
 function showPage3() {
   document.getElementById("question").innerHTML =
-  "<h2>Anything else important?</h2><p class='helperText'><span class='optionalSubtitle'>More optional must-haves</span></p>";
+  "<h2>Anything else important?</h2><p class='helperText'><span class='optionalSubtitle'>More optional <strong>must-haves</strong></span></p>";
 
   let html = "";
 
