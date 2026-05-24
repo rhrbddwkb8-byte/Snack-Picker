@@ -89,6 +89,38 @@ button:hover {
   border-radius: 14px;
   margin: 10px 0;
 }
+.patternData {
+  font-size: 14px;
+  margin-left: 12px;
+  margin-top: 4px;
+  margin-bottom: 12px;
+}
+
+.sectionTitle {
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.feelingTitle {
+  font-size: 23px;
+  font-weight: bold;
+  margin-bottom: 14px;
+}
+
+.feeling-lonely { background: #f1e9f7; }
+.feeling-sad { background: #e8f1f8; }
+.feeling-overwhelmed { background: #f7e8e8; }
+.feeling-anxious { background: #fff0d9; }
+.feeling-restless { background: #fff6d9; }
+.feeling-bored { background: #f0f7df; }
+.feeling-overstimulated { background: #e8f7f3; }
+.feeling-tired { background: #e9eef5; }
+.feeling-frustrated { background: #f7e6dd; }
+.feeling-burdened { background: #eee8f7; }
+.feeling-hungry { background: #eaf7e8; }
+.feeling-unsure { background: #eeeeee; }
+
 </style>
 </head>
 
@@ -233,7 +265,7 @@ const feelingOptions = [
   "Bored",
   "Overstimulated",
   "Tired",
-  "Frustrated",
+  "Frustrated/Irritable",
   "Burdened",
   "Just hungry",
   "I'm not sure"
@@ -659,7 +691,7 @@ function showPatterns() {
     `;
 
     html += `<div id="byFeelingSection" style="display:none;">`;
-    html += `<h3>By feeling</h3>`;
+    html += `<h2 class="sectionTitle">By feeling</h2>`;
 
     Object.keys(byFeeling).forEach(feeling => {
       const total = byFeeling[feeling].total;
@@ -672,22 +704,42 @@ function showPatterns() {
         .sort((a, b) => b[1] - a[1])
         .slice(0, 3);
 
-      html += `
-        <div class="historyBox">
-          <strong>${feeling}</strong><br><br>
+      const feelingLower = feeling.toLowerCase();
 
-          <em>Most common sensory needs:</em><br>
-          ${topTags.map(([tag, count]) =>
-            `${tag}: ${Math.round((count / total) * 100)}%`
-          ).join("<br>")}
+      const feelingClass =
+        feelingLower.includes("lonely") ? "feeling-lonely" :
+        feelingLower.includes("sad") ? "feeling-sad" :
+        feelingLower.includes("overwhelmed") ? "feeling-overwhelmed" :
+        feelingLower.includes("anxious") ? "feeling-anxious" :
+        feelingLower.includes("restless") ? "feeling-restless" :
+        feelingLower.includes("bored") ? "feeling-bored" :
+        feelingLower.includes("overstimulated") ? "feeling-overstimulated" :
+        feelingLower.includes("tired") ? "feeling-tired" :
+        feelingLower.includes("frustrated") || feelingLower.includes("irritable") ? "feeling-frustrated" :
+        feelingLower.includes("burdened") ? "feeling-burdened" :
+        feelingLower.includes("just hungry") ? "feeling-hungry" :
+        feelingLower.includes("not sure") ? "feeling-unsure" :
+        "";
 
-          <br><br>
-          <em>Trending snacks:</em><br>
-          ${topSnacks.map(([snack, count]) =>
-            `${snack}: ${Math.round((count / total) * 100)}%`
-          ).join("<br>")}
-        </div>
-      `;
+html += `
+  <div class="historyBox ${feelingClass}">
+    <div class="feelingTitle">${feeling}</div>
+
+    <strong>Most common sensory needs</strong><br>
+    <div class="patternData">
+      ${topTags.map(([tag, count]) =>
+        `${tag}: ${Math.round((count / total) * 100)}%`
+      ).join("<br>")}
+    </div>
+
+    <strong>Trending snacks</strong><br>
+    <div class="patternData">
+      ${topSnacks.map(([snack, count]) =>
+        `${snack}: ${Math.round((count / total) * 100)}%`
+      ).join("<br>")}
+    </div>
+  </div>
+`;
     });
 
     html += `</div>`;
